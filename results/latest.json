@@ -1,6 +1,7 @@
 {
-  "message": "What is 2+2? Answer briefly.",
-  "response": "Duck.ai\nNew Chat\nCTRL + ⇧ + O\nNew Voice Chat\nNew Image\nCTRL + ⇧ + I\nSettings & More\nFree\nby DuckDuckGo\n|\nGet the App\n\nDrop your photos or PDF files\n\nAll chats are\nprivate\nTools\nFast\nGPT-5\nAsk\n\nDuckDuckGo anonymizes your chats. By clicking 'Ask' you agree to our Privacy Policy and Terms of Service.\n\nUnlock advanced AI models with a DuckDuckGo subscription",
-  "timestamp": "2026-05-27T19:35:00.492Z",
-  "status": "success"
+  "message": "What is 2+2?",
+  "response": "Duck.ai\nNew Chat\nCTRL + ⇧ + O\nNew Voice Chat\nNew Image\nCTRL + ⇧ + I\n\nChats\n\nWhat is 2+2?\n\nYour recent chats live here! You can refer to your chats or clear them anytime.\n\nGot It!\nHow It Works\nSettings & More\nFree\nby DuckDuckGo\n|\nGet the App\n\nDrop your photos or PDF files\n\nAnonymized by DuckDuckGo. Zero data retention for this chat. No AI training. Learn more\n\nWhat is 2+2?\n\nGenerating response\nTools\nFast\n\nAll chats are private. AI can make mistakes.\n\nUnfortunately, bots use DuckDuckGo too.\n\nPlease complete the following challenge to confirm this prompt was made by a human.\n\nSelect all squares containing a duck:\n\nSubmit",
+  "sent": true,
+  "timestamp": "2026-05-27T19:38:31.475Z",
+  "status": "done"
 }

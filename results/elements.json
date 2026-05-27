@@ -1,0 +1,141 @@
+{
+  "forms": [
+    {
+      "id": "",
+      "className": "GxcZGnmmfFx3B6SLBSHh RJhEAc80sTzdJYZxcRp5"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "file",
+      "id": "",
+      "placeholder": "",
+      "className": "",
+      "visible": false
+    }
+  ],
+  "buttons": [
+    {
+      "text": "",
+      "id": "",
+      "className": "TMqvZ1I3qrRJwtwIiaVN Fax09GBRvgd5FX9cxN3C mDfTLfECeDUwedENpz",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "New Chat\nCTRL + ⇧ + O",
+      "id": "",
+      "className": "VpffLqZz_i__nmNaesOA H2ZGpgnLZKlWOvvWjDQh ekCwkGuake0VTpY_jF",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "New Voice Chat",
+      "id": "",
+      "className": "VpffLqZz_i__nmNaesOA ekCwkGuake0VTpY_jFSg cT119ltdV6p7kedmwh",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "New Image\nCTRL + ⇧ + I",
+      "id": "",
+      "className": "VpffLqZz_i__nmNaesOA H2ZGpgnLZKlWOvvWjDQh ekCwkGuake0VTpY_jF",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "Settings & More\nFree",
+      "id": "",
+      "className": "B17mW0YmVAFuIWSEnzw4 mDfTLfECeDUwedENpz0Z rpUl9U1eM_BmhYCtUb",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "private",
+      "id": "",
+      "className": "N4mRqp8TVBTCBfVElDsv",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "",
+      "id": "",
+      "className": "aYQ7q5FYStsVg1xHFiFw TMqvZ1I3qrRJwtwIiaVN mDfTLfECeDUwedENpz",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "",
+      "id": "",
+      "className": "aFPoYrH5VfBZLmQbHFkW mDfTLfECeDUwedENpz0Z rpUl9U1eM_BmhYCtUb",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "Tools",
+      "id": "",
+      "className": "BktvwToiBqxcn3uVXt5z _7gy3x5vxaFMJPVHThPj mDfTLfECeDUwedENpz",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "Fast",
+      "id": "",
+      "className": "gulvo5ZJtbaB4XZVWKib mDfTLfECeDUwedENpz0Z rpUl9U1eM_BmhYCtUb",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "GPT-5",
+      "id": "",
+      "className": "AHrsI58GK_lguBKwmM47 mDfTLfECeDUwedENpz0Z rpUl9U1eM_BmhYCtUb",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "Ask",
+      "id": "",
+      "className": "OBhZtIxa9q5aVP29xT9j bcF7UYQxk12e5XSCQKVx M_YWGuhDQcOWJoQf9H",
+      "visible": true,
+      "type": "submit"
+    },
+    {
+      "text": "",
+      "id": "",
+      "className": "YwVAQQko8KMb8FFwqGMD TMqvZ1I3qrRJwtwIiaVN mDfTLfECeDUwedENpz",
+      "visible": true,
+      "type": "button"
+    },
+    {
+      "text": "New Image",
+      "id": "",
+      "className": "FLZ7VhhdLINQq0_0M4Y6 mDfTLfECeDUwedENpz0Z rpUl9U1eM_BmhYCtUb",
+      "visible": false,
+      "type": "button"
+    },
+    {
+      "text": "Voice Chat",
+      "id": "",
+      "className": "FLZ7VhhdLINQq0_0M4Y6 mDfTLfECeDUwedENpz0Z rpUl9U1eM_BmhYCtUb",
+      "visible": false,
+      "type": "button"
+    },
+    {
+      "text": "",
+      "id": "",
+      "className": "XkSxBJ8ofSQsZmGZs6qx mDfTLfECeDUwedENpz0Z O7gLkV4OTP_SAakrV0",
+      "visible": true,
+      "type": "button"
+    }
+  ],
+  "textareas": [
+    {
+      "id": "",
+      "placeholder": "Ask anything privately",
+      "className": "JRDRiEf5NPKWK43sArdC",
+      "visible": true,
+      "rows": 1
+    }
+  ],
+  "editables": []
+}
