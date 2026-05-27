@@ -6,7 +6,7 @@ on:
       message:
         description: 'Message to send to duck.ai'
         required: true
-        default: 'Hello! What can you do?'
+        default: 'Hello!'
       model:
         description: 'AI model (claude, gpt4o, llama, mistral)'
         required: false
@@ -25,157 +25,61 @@ jobs:
         run: npm install puppeteer
 
       - name: Interact with Duck.ai
+        env:
+          INPUT_MESSAGE: ${{ github.event.inputs.message }}
+          INPUT_MODEL: ${{ github.event.inputs.model }}
         run: |
-          cat << 'EOF' > interact.js
+          cat > interact.js << 'JSEOF'
           const puppeteer = require('puppeteer');
-
-          const MODEL_MAP = {
-            claude: 'Claude',
-            gpt4o: 'GPT-4o',
-            llama: 'Llama',
-            mistral: 'Mistral'
-          };
-
           async function main() {
-            const message = process.env.INPUT_MESSAGE;
+            const message = process.env.INPUT_MESSAGE || 'Hello!';
             const model = process.env.INPUT_MODEL || 'claude';
-            const modelName = MODEL_MAP[model] || 'Claude';
-
-            console.log(`📨 Message: ${message}`);
-            console.log(`🤖 Model: ${modelName}`);
-
+            console.log('Message:', message, '| Model:', model);
             const browser = await puppeteer.launch({
               headless: true,
               args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
             });
-
             const page = await browser.newPage();
-            await page.setViewport({ width: 1280, height: 800 });
-            await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
-
-            console.log('🌐 Opening duck.ai...');
+            await page.setViewport({ width: 1280, height: 900 });
+            await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36');
+            console.log('Opening duck.ai...');
             await page.goto('https://duck.ai/', { waitUntil: 'networkidle2', timeout: 30000 });
-
-            // Wait for the page to load
-            await new Promise(r => setTimeout(r, 3000));
-
-            // Try to select model if not default
-            try {
-              const modelBtn = await page.$('[data-testid="model-selector"], button[aria-label*="model"], .model-selector');
-              if (modelBtn) {
-                await modelBtn.click();
-                await new Promise(r => setTimeout(r, 1000));
-                const modelOption = await page.$x(`//button[contains(text(), '${modelName}')] | //li[contains(text(), '${modelName}')]`);
-                if (modelOption.length > 0) {
-                  await modelOption[0].click();
-                  console.log(`✅ Model ${modelName} selected`);
-                  await new Promise(r => setTimeout(r, 1000));
-                }
-              }
-            } catch(e) {
-              console.log('ℹ️ Could not change model, using default');
+            await new Promise(r => setTimeout(r, 4000));
+            await page.screenshot({ path: 'loaded.png' });
+            const html = await page.content();
+            require('fs').writeFileSync('page.html', html);
+            console.log('Page title:', await page.title());
+            const textarea = await page.$('textarea');
+            if (textarea) {
+              await textarea.click();
+              await textarea.type(message, { delay: 50 });
+              await page.keyboard.press('Enter');
+              console.log('Message sent! Waiting for response...');
+              await new Promise(r => setTimeout(r, 8000));
+              await page.screenshot({ path: 'response.png', fullPage: true });
+              const text = await page.evaluate(() => document.body.innerText);
+              require('fs').writeFileSync('response.txt', text);
+              console.log('RESPONSE TEXT:\n', text.slice(0, 2000));
+            } else {
+              console.log('No textarea found. Page content saved.');
+              const text = await page.evaluate(() => document.body.innerText);
+              require('fs').writeFileSync('response.txt', text);
+              console.log(text.slice(0, 1000));
             }
-
-            // Find textarea and type message
-            console.log('⌨️ Typing message...');
-            const textarea = await page.waitForSelector('textarea, input[type="text"], [contenteditable="true"]', { timeout: 15000 });
-            await textarea.click();
-            await textarea.type(message, { delay: 30 });
-
-            // Take screenshot before sending
-            await page.screenshot({ path: 'before_send.png' });
-
-            // Send message
-            await page.keyboard.press('Enter');
-            console.log('📤 Message sent, waiting for response...');
-
-            // Wait for response - wait for text to appear and stop changing
-            await new Promise(r => setTimeout(r, 3000));
-
-            let lastText = '';
-            let stableCount = 0;
-            for (let i = 0; i < 30; i++) {
-              await new Promise(r => setTimeout(r, 2000));
-              const currentText = await page.evaluate(() => {
-                const msgs = document.querySelectorAll('[class*="message"], [class*="response"], [class*="assistant"], [class*="chat"] p, [class*="answer"]');
-                return Array.from(msgs).map(m => m.innerText).join('
-');
-              });
-              if (currentText === lastText && currentText.length > 0) {
-                stableCount++;
-                if (stableCount >= 2) break;
-              } else {
-                stableCount = 0;
-              }
-              lastText = currentText;
-              process.stdout.write('.');
-            }
-
-            console.log('
-📸 Taking final screenshot...');
-            await page.screenshot({ path: 'response.png', fullPage: true });
-
-            // Extract response text
-            const responseText = await page.evaluate(() => {
-              // Try multiple selectors for duck.ai response
-              const selectors = [
-                '[class*="message--assistant"]',
-                '[class*="AIResponse"]',
-                '[data-testid*="response"]',
-                '[class*="response"]',
-                '.chat-message:last-child',
-                'article',
-                '[class*="message"]:last-child'
-              ];
-              for (const sel of selectors) {
-                const els = document.querySelectorAll(sel);
-                if (els.length > 0) {
-                  return Array.from(els).map(e => e.innerText).join('
-
-');
-                }
-              }
-              // Fallback: get all visible text in main content
-              const main = document.querySelector('main') || document.body;
-              return main.innerText;
-            });
-
-            console.log('
-====== RESPONSE ======');
-            console.log(responseText);
-            console.log('======================');
-
-            // Save response to file
-            const fs = require('fs');
-            fs.writeFileSync('response.txt', responseText);
-            fs.writeFileSync('result.json', JSON.stringify({
-              message,
-              model: modelName,
-              response: responseText,
-              timestamp: new Date().toISOString()
-            }, null, 2));
-
             await browser.close();
           }
-
-          main().catch(err => {
-            console.error('Error:', err);
-            process.exit(1);
-          });
-          EOF
+          main().catch(e => { console.error(e); process.exit(1); });
+          JSEOF
           node interact.js
-        env:
-          INPUT_MESSAGE: ${{ github.event.inputs.message }}
-          INPUT_MODEL: ${{ github.event.inputs.model }}
 
-      - name: Upload results
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: duck-ai-results
           path: |
             response.txt
-            result.json
             response.png
-            before_send.png
+            loaded.png
+            page.html
           retention-days: 1
