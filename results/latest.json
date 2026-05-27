@@ -1,7 +1,8 @@
 {
-  "message": "What is 2+2?",
-  "response": "Duck.ai\nNew Chat\nCTRL + ⇧ + O\nNew Voice Chat\nNew Image\nCTRL + ⇧ + I\n\nChats\n\nWhat is 2+2?\n\nYour recent chats live here! You can refer to your chats or clear them anytime.\n\nGot It!\nHow It Works\nSettings & More\nFree\nby DuckDuckGo\n|\nGet the App\n\nDrop your photos or PDF files\n\nAnonymized by DuckDuckGo. Zero data retention for this chat. No AI training. Learn more\n\nWhat is 2+2?\n\nGenerating response\nTools\nFast\n\nAll chats are private. AI can make mistakes.\n\nUnfortunately, bots use DuckDuckGo too.\n\nPlease complete the following challenge to confirm this prompt was made by a human.\n\nSelect all squares containing a duck:\n\nSubmit",
-  "sent": true,
-  "timestamp": "2026-05-27T19:38:31.475Z",
-  "status": "done"
+  "message": "What is 2+2? Answer briefly.",
+  "ai_response": "",
+  "full_page_text": "Duck.ai\nNew Chat\nCTRL + ⇧ + O\nNew Voice Chat\nNew Image\nCTRL + ⇧ + I\n\nChats\n\nWhat is 2+2? Answer briefly.\n\nYour recent chats live here! You can refer to your chats or clear them anytime.\n\nGot It!\nHow It Works\nSettings & More\nFree\nby DuckDuckGo\n|\nGet the App\n\nDrop your photos or PDF files\n\nAnonymized by DuckDuckGo. Zero data retention for this chat. No AI training. Learn more\n\nWhat is 2+2? Answer briefly.\n\nGenerating response\nTools\nFast\n\nAll chats are private. AI can make mistakes.\n\nUnfortunately, bots use DuckDuckGo too.\n\nPlease complete the following challenge to confirm this prompt was made by a human.\n\nSelect all squares containing a duck:\n\nSubmit",
+  "has_captcha": true,
+  "timestamp": "2026-05-27T19:40:35.634Z",
+  "status": "captcha_blocked"
 }
